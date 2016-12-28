@@ -1,0 +1,26 @@
+{
+  "name": "dhtmlx-e6-demo",
+  "version": "0.1.0",
+  "description": "Demo project for the dhtmlx-e6 library",
+  "author": "Ivan Galarza <nadeyyo@gmail.com>",
+  "repository" : { 
+	"type" : "git",
+    "url" : "https://github.com/igalarza/dhtmlx-e6-demo.git"
+  }
+  "scripts": {
+	"prepublish" : "gulp",
+	"test" : "gulp test"
+  },
+  "files": [
+	"dist/*"
+  ],
+  "keywords": [
+    "dhtmlx",
+    "ecmascript6",
+	"demo"
+  ],
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "rollup": "^0.38.0"
+  }
+}
