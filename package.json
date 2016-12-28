@@ -9,11 +9,8 @@
   },
   "scripts": {
 	"prepublish" : "./node_modules/.bin/gulp",
-	"run" : "./node_modules/.bin/http-server ./dist/"
+	"server" : "./node_modules/.bin/http-server ./dist/"
   },
-  "files": [
-	"dist/*"
-  ],
   "keywords": [
     "dhtmlx",
     "ecmascript6",
@@ -21,7 +18,7 @@
   ],
   "license": "GPL-3.0",
   "dependencies": {
-	"dhtmlx-e6": "git://github.com/igalarza/dhtmlx-e6.git#head"
+	"dhtmlx-e6": "git://github.com/igalarza/dhtmlx-e6.git"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.18.0",
