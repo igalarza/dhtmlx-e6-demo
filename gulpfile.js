@@ -10,16 +10,13 @@ var babel = require('rollup-plugin-babel');
 var uglify = require('gulp-uglify');
 var css = require('rollup-plugin-css-only');
 var eslint = require('rollup-plugin-eslint');
-var gulpDocumentation = require('gulp-documentation');
 var includePaths = require('rollup-plugin-includepaths');
-var Server = require('karma').Server;
 
-
-gulp.task('default', ['htmldocs', 'build']);
+gulp.task('default', ['copy-html', 'copy-vendor', 'build']);
 
 var cache;
 gulp.task('build', function() {
-  return rollup({
+	return rollup({
       entry: './src/main.js',
 	  cache: cache,
 	  format: 'cjs',
@@ -60,42 +57,28 @@ gulp.task('build', function() {
 	.pipe(uglify())
 
     // if you want to output with a different name from the input file, use gulp-rename here.
-    .pipe(rename('dhtmlx-e6.min.js'))
+    .pipe(rename('bundle.min.js'))
 
     // write the sourcemap alongside the output file.
     .pipe(sourcemaps.write('./'))
 
     // and output to ./dist/app.js as normal.
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./dist'))
+	
+	
+});
+
+gulp.task('copy-html', function() {
+	return gulp.src('src/index.html')
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('copy-vendor', function() {
+	return gulp.src('vendor/**/*')
+    .pipe(gulp.dest('dist/vendor/'));
 });
 
 // Watch for changes in the code!
 gulp.task('watch', function() {
-  gulp.watch('./src/**/*.js', ['build']);
-});
-
-// Generating a pretty HTML documentation site
-gulp.task('htmldocs', function () {
-  return gulp.src('src/**/*.js')
-    .pipe(gulpDocumentation('html'))
-    .pipe(gulp.dest('./docs/'));
-});
-
-/**
- * Run test once and exit
- */
-gulp.task('test', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done).start();
-});
-
-/**
- * Watch for file changes and re-run tests on each change
- */
-gulp.task('tdd', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js'
-  }, done).start();
+	gulp.watch('./src/**/*.js', ['build']);
 });
