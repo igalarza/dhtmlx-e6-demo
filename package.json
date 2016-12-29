@@ -3,22 +3,24 @@
   "version": "0.1.0",
   "description": "Demo project for the dhtmlx-e6 library",
   "author": "Ivan Galarza <nadeyyo@gmail.com>",
-  "repository" : {
-	"type" : "git",
-    "url" : "https://github.com/igalarza/dhtmlx-e6-demo.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/igalarza/dhtmlx-e6-demo.git"
   },
   "scripts": {
-	"prepublish" : "./node_modules/.bin/gulp",
-	"server" : "./node_modules/.bin/http-server ./dist/"
+    "prepublish": "./node_modules/.bin/gulp",
+    "server": "./node_modules/.bin/http-server ./dist/"
   },
   "keywords": [
     "dhtmlx",
     "ecmascript6",
-	"demo"
+    "demo"
   ],
   "license": "GPL-3.0",
   "dependencies": {
-	"dhtmlx-e6": "git://github.com/igalarza/dhtmlx-e6.git"
+    "bootstrap": "^3.3.7",
+    "bulma": "^0.2.3",
+    "dhtmlx-e6": "git://github.com/igalarza/dhtmlx-e6.git"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "^6.18.0",
@@ -43,6 +45,7 @@
     "rollup-plugin-commonjs": "^6.0.0",
     "rollup-plugin-css-only": "^0.2.0",
     "rollup-plugin-eslint": "^3.0.0",
+    "rollup-plugin-html": "^0.2.1",
     "rollup-plugin-includepaths": "^0.2.1",
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-postcss": "^0.2.0",

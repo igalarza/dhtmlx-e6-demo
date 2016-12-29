@@ -1,5 +1,19 @@
 
-import { SimpleLayout , TwoColumnsLayout } from 'dhtmlx-e6';
+// Using bulma flex library, see:
+// http://bulma.io/
+// import "../node_modules/bulma/css/bulma.css";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './main.css';
 
-var simpleLayout = new SimpleLayout(document.body);
-var twoColumns = new TwoColumnsLayout(simpleLayout.cell);
+// HTML templates
+import headerHtml from './assets/header.html';
+import footerHtml from './assets/footer.html';
+
+import { PageLayout , TwoColumnsLayout } from 'dhtmlx-e6';
+
+
+var pageLayout = new PageLayout(document.body, 100, 25);
+var twoColumns = new TwoColumnsLayout(pageLayout.body);
+
+pageLayout.header.html = headerHtml;
+pageLayout.footer.html = footerHtml;

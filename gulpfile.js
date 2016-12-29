@@ -8,7 +8,9 @@ var rename = require('gulp-rename');
 var buffer = require('vinyl-buffer');
 var babel = require('rollup-plugin-babel');
 var uglify = require('gulp-uglify');
+var html = require('rollup-plugin-html');
 var css = require('rollup-plugin-css-only');
+
 var eslint = require('rollup-plugin-eslint');
 var includePaths = require('rollup-plugin-includepaths');
 
@@ -23,23 +25,43 @@ gulp.task('build', function() {
 	  context: 'window',
 	  sourceMap: true,
 	  plugins: [
+		// Extracts html templates
+		html({
+            exclude: 'src/index.html',
+			htmlMinifierOptions: {
+                collapseWhitespace: true,
+                collapseBooleanAttributes: true,
+                conservativeCollapse: true,
+                minifyJS: false
+            }
+        }),
+		
+		// Extract css templates
+		css({ output: 'dist/bundle.css' }),
+		
+		// Include internal paths
 		includePaths({
 			include: {},
 			paths: ['src/'],
 			external: [],
 			extensions: ['.js', '.json']
 		}),
+		
+		// Include external paths
 		nodeResolve(),
-		css({ output: 'dist/bundle.css' }),
+		
+		// Check syntax
 		eslint(),
+		
+		// Transform code to old plain javascript
 		babel({
 			presets: [["es2015", { "modules": false }]],
 			plugins: ["external-helpers"]
-		}),
-		uglify()		
+		})		
 	  ]
     })
 	
+	// necessary for "gulp watch" to work
 	.on('bundle', function(bundle) {
       cache = bundle;
     })
@@ -56,23 +78,23 @@ gulp.task('build', function() {
     // transform the code further here.
 	.pipe(uglify())
 
-    // if you want to output with a different name from the input file, use gulp-rename here.
+    // Change output filename
     .pipe(rename('bundle.min.js'))
 
     // write the sourcemap alongside the output file.
     .pipe(sourcemaps.write('./'))
 
-    // and output to ./dist/app.js as normal.
+    // and output the javascript
     .pipe(gulp.dest('./dist'))
-	
-	
 });
 
+// Copy src/index.html to dist folder
 gulp.task('copy-html', function() {
 	return gulp.src('src/index.html')
     .pipe(gulp.dest('dist/'));
 });
 
+// Copy vendor files to dist folder
 gulp.task('copy-vendor', function() {
 	return gulp.src('vendor/**/*')
     .pipe(gulp.dest('dist/vendor/'));
@@ -80,5 +102,5 @@ gulp.task('copy-vendor', function() {
 
 // Watch for changes in the code!
 gulp.task('watch', function() {
-	gulp.watch('./src/**/*.js', ['build']);
+	gulp.watch(['./src/**/*.js', './src/**/*.html'], ['build']);
 });
