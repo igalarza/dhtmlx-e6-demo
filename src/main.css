@@ -17,3 +17,8 @@ html, body {
 	height: 100%;
 	width: auto;
 }
+
+.dhtmlxMenu_material_TopLevel_Item_Normal,
+.sub_item_selected {
+	cursor: pointer;
+}

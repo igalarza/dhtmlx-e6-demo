@@ -1,19 +1,12 @@
 
-// Using bulma flex library, see:
-// http://bulma.io/
-// import "../node_modules/bulma/css/bulma.css";
+// css imports
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './main.css';
 
-// HTML templates
-import headerHtml from './assets/header.html';
-import footerHtml from './assets/footer.html';
+import { MainView } from 'views/main/MainView';
 
-import { PageLayout , TwoColumnsLayout } from 'dhtmlx-e6';
+var mainView = new MainView();
 
 
-var pageLayout = new PageLayout(document.body, 100, 25);
-var twoColumns = new TwoColumnsLayout(pageLayout.body);
 
-pageLayout.header.html = headerHtml;
-pageLayout.footer.html = footerHtml;
+
