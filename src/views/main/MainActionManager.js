@@ -7,15 +7,15 @@ export class MainActionManager extends ActionManager {
 	
 	constructor (context) {
 		super(context);	
-		this.addAction(new Action('home', this.homeView));
-		this.addAction(new Action('test', this.otherView));
+		this.addActionObj(new Action('home', this.homeView));
+		this.addActionObj(new Action('test', this.otherView));
 	}
 	
-	homeView (context) {
+	homeView (params, context) {
 		context.html = content;
 	}
 	
-	otherView (context) {
+	otherView (params, context) {
 		context.html = '';
 	}
 }

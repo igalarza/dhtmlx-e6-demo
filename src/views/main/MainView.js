@@ -7,6 +7,7 @@ import footerHtml from './assets/footer.html';
 
 import { MainActionManager } from './MainActionManager';
 import { MainMenu } from './components/MainMenu';
+import { MainTree } from './components/MainTree';
 
 export class MainView {
 	
@@ -23,9 +24,12 @@ export class MainView {
 		var actionManager = new MainActionManager(contentLayout.right); 
 		
 		// Loads the home content
-		actionManager.homeView(contentLayout.right);
+		actionManager.homeView(null, contentLayout.right);
 		
 		// Main menu
-		var menu = new MainMenu(pageLayout.body, actionManager);		
+		var menu = new MainMenu(pageLayout.body, actionManager);	
+
+		// Main tree (left layout)
+		var mainTree = new MainTree(contentLayout.left, actionManager);
 	}
 }
