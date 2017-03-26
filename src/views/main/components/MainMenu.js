@@ -14,7 +14,7 @@ export class MainMenu extends Menu {
 		
 		this.addMenuItem(actionManager.createMenuItem(null, 'home', 'Home'));
 		this.addTextContainer('layouts', 'Layouts');
-		this.addMenuItem(actionManager.createMenuItem('layouts', 'test', 'Test'));	
+		this.addMenuItem(actionManager.createMenuItem('layouts', 'layoutDemo', 'Layout'));	
 
 	}
 

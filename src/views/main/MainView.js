@@ -11,11 +11,10 @@ import { MainTree } from './components/MainTree';
 
 export class MainView {
 	
-	constructor() {
-		var pageLayout = new PageLayout(document.body, 100, 25);
+	constructor(parentObject) {
+		var pageLayout = new PageLayout(parentObject, 100, 25);
 		pageLayout.header.html = headerHtml;
 		pageLayout.footer.html = footerHtml;
-
 		
 		var contentLayout = new TwoColumnsLayout(pageLayout.body);
 		contentLayout.left.width = 200;
